@@ -24,7 +24,11 @@
 import UIKit
 
 public protocol SideMenuControllerDelegate: class {
+    
+    func sideMenuControllerWillHide(sideMenuController: SideMenuController)
     func sideMenuControllerDidHide(sideMenuController: SideMenuController)
+    
+    func sideMenuControllerWillReveal(sideMenuController: SideMenuController)
     func sideMenuControllerDidReveal(sideMenuController: SideMenuController)
 }
 
@@ -83,7 +87,7 @@ public extension SideMenuController {
      - parameter centerViewController: controller to be embedded
      - parameter cacheIdentifier: identifier for the view controllers cache
      */
-    public func embed(centerViewController controller: UIViewController, cacheIdentifier: String? = nil) {
+    public func embed(centerViewController controller: UIViewController, cacheIdentifier: String? = nil, keepSideMenuOpened: Bool) {
         
         if let id = cacheIdentifier {
             controllersCache[id] = controller
@@ -114,7 +118,7 @@ public extension SideMenuController {
                 completion()
             }
             
-            if sidePanelVisible {
+            if sidePanelVisible && !keepSideMenuOpened {
                 animate(toReveal: false)
             }
         }
@@ -292,6 +296,9 @@ public class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Interaction -
     
     func animate(toReveal reveal: Bool){
+        
+        let delegateMethod = reveal ? self.delegate?.sideMenuControllerWillReveal : self.delegate?.sideMenuControllerWillHide
+        delegateMethod?(self)
         
         transitionInProgress = true
         sidePanelVisible = reveal

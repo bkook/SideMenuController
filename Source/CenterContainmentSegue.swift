@@ -21,14 +21,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-public class CenterContainmentSegue: UIStoryboardSegue{
+public class CenterContainmentSegue: UIStoryboardSegue {
+    
+    public var keepSideMenuOpened = false
     
     override public func perform() {
         if let sideController = self.sourceViewController as? SideMenuController {
             guard let destinationController = destinationViewController as? UINavigationController else {
                 fatalError("Destination controller needs to be an instance of UINavigationController")
             }
-            sideController.embed(centerViewController: destinationController)
+            sideController.embed(centerViewController: destinationController, cacheIdentifier: nil,
+                                 keepSideMenuOpened: keepSideMenuOpened)
         } else {
             fatalError("This type of segue must only be used from a SideMenuController")
         }
