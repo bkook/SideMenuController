@@ -41,10 +41,16 @@ class ContentViewController: UIViewController, SideMenuControllerDelegate {
         return colors[index]
     }
     
+    func sideMenuControllerWillHide(_ sideMenuController: SideMenuController) {
+    }
+    
     func sideMenuControllerDidHide(_ sideMenuController: SideMenuController) {
         print(#function)
     }
     
+    func sideMenuControllerWillReveal(_ sideMenuController: SideMenuController) {
+    }
+
     func sideMenuControllerDidReveal(_ sideMenuController: SideMenuController) {
         print(#function)
     }

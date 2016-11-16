@@ -46,8 +46,14 @@ class CachingSideViewController: UITableViewController, SideMenuControllerDelega
         }
     }
     
+    func sideMenuControllerWillHide(_ sideMenuController: SideMenuController) {
+    }
+
     func sideMenuControllerDidHide(_ sideMenuController: SideMenuController) {
         print(#function)
+    }
+    
+    func sideMenuControllerWillReveal(_ sideMenuController: SideMenuController) {
     }
     
     func sideMenuControllerDidReveal(_ sideMenuController: SideMenuController) {

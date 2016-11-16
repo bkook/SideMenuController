@@ -87,7 +87,7 @@ public extension SideMenuController {
      - parameter centerViewController: controller to be embedded
      - parameter cacheIdentifier: identifier for the view controllers cache
      */
-    public func embed(centerViewController controller: UIViewController, cacheIdentifier: String? = nil, keepSideMenuOpened: Bool) {
+    public func embed(centerViewController controller: UIViewController, cacheIdentifier: String? = nil, keepSideMenuOpened: Bool = false) {
         
         if let id = cacheIdentifier {
             controllersCache[id] = controller
