@@ -23,7 +23,7 @@
 
 import Foundation
 
-let DefaultStatusBarHeight : CGFloat = UIApplication.shared.statusBarFrame.height
+let DefaultStatusBarHeight : CGFloat = UIApplication.shared.statusBarFrame.size.height
 
 extension UIView {
     class func panelAnimation(_ duration : TimeInterval, animations : @escaping (()->()), completion : (()->())? = nil) {
